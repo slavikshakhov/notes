@@ -1,0 +1,25 @@
+<mat-card *ngFor="let subject of subjects">
+  <mat-card-header class="card-header">
+    <mat-card-title>{{ subject.name }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="card-content">
+    <p>Number of credits: {{ subject.credits }}</p>
+    <p>Level: {{ subject.level }}</p>
+    <p *ngIf="subject?.instructor; else noInstructor">
+      {{ subject.instructor }}
+    </p>
+    <ng-template #noInstructor><p>No instructor selected yet</p> </ng-template>
+  </mat-card-content>
+  <mat-card-actions class="card-actions">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="deleteSubject(subject.id)"
+    >
+      DELETE
+    </button>
+    <button mat-raised-button color="accent" (click)="editSubject(subject)">
+      EDIT SUBJECT
+    </button>
+  </mat-card-actions>
+</mat-card>

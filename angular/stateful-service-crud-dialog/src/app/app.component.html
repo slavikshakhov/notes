@@ -1,0 +1,27 @@
+<div>
+  <mat-form-field>
+    <mat-select
+      placeholder="Select Level"
+      [(ngModel)]="selectedLevel"
+      (ngModelChange)="filterByLevel(select.value)"
+      #select
+    >
+      <mat-option *ngFor="let level of LEVEL_OPTIONS" [value]="level">{{
+        level
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button
+    mat-raised-button
+    color="accent"
+    class="create-subject-btn"
+    (click)="createNewSubject()"
+  >
+    Create New Subject
+  </button>
+</div>
+
+<div class="container">
+  <app-subject-cards [subjects]="subjects$ | async"></app-subject-cards>
+</div>
+<!-- handle filter by level (3 levels), use dropdown, call service filterByLevel -->

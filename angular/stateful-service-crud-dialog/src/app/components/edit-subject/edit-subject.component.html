@@ -1,0 +1,47 @@
+<div class="mat-dialog">
+  <h2 mat-dialog-title></h2>
+  <mat-dialog-content [formGroup]="form">
+    <mat-form-field>
+      <input matInput formControlName="name" placeholder="Course Name" />
+      <small *ngIf="form.get('name').invalid && form.get('name').touched"
+        >Name is required</small
+      >
+      <!-- (specific error)
+        <small *ngIf="form.get('name').errors?.['required'] && form.get('name').touched"
+        >Name is required</small
+      >
+       -->
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Select Level" #select formControlName="level">
+        <mat-option *ngFor="let level of levelOptions" [value]="level">{{
+          level
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select
+        placeholder="Select Credits"
+        #select
+        formControlName="credits"
+      >
+        <mat-option *ngFor="let level of [3, 6, 9]" [value]="level">{{
+          level
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        formControlName="instructor"
+        placeholder="Professor Name"
+      />
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button type="submit" (click)="save()" [disabled]="form.invalid">
+      Save
+    </button>
+    <button mat-button (click)="close()">Close</button>
+  </mat-dialog-actions>
+</div>
